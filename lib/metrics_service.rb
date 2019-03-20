@@ -3,9 +3,15 @@
 ##
 # An object with methods for tracking basic, consistent metrics
 class MetricsService
+  class << self
+    attr_accessor :logger
+  end
+
   ##
-  # Must be set in application bootstrap before use
-  LOGGER = nil
+  # Initializes the global logger for this metrics service
+  def self.initialize_logger(new_logger)
+    self.logger = new_logger
+  end
 
   ##
   # Track a basic event; intended for COUNT queries. Outputs `TrackedEvent`
