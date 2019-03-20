@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'opinionated-metrics'
-  s.version     = '0.0.4'
+  s.version     = '0.0.5'
   s.date        = '2019-03-20'
   s.summary     = 'Simple metrics gem built to abstract out metrics provider differences'
   s.description = 'Simple metrics gem built to abstract out metrics provider differences'
