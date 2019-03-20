@@ -4,6 +4,10 @@
 # An object with methods for tracking basic, consistent metrics
 class MetricsService
   ##
+  # Must be set in application bootstrap before use
+  LOGGER = nil
+
+  ##
   # Track a basic event; intended for COUNT queries. Outputs `TrackedEvent`
   #
   # @param [String] name A name for filtering within WHERE queries
@@ -35,7 +39,7 @@ class MetricsService
   def self.duration_start_end(name, start, finish, **additional_properties)
     duration(name, (finish - start).seconds, **additional_properties)
   rescue StandardError => e
-    Rails.logger.error("Failed reporting duration to NewRelic: #{e}")
+    LOGGER.error("Failed reporting duration to NewRelic: #{e}")
   end
 
   ##
@@ -48,7 +52,7 @@ class MetricsService
     properties = { name: name, duration: duration.in_milliseconds }.merge(additional_properties)
     ::NewRelic::Agent.record_custom_event('OpDurationMs', properties)
   rescue StandardError => e
-    Rails.logger.error("Failed reporting duration to NewRelic: #{e}")
+    LOGGER.error("Failed reporting duration to NewRelic: #{e}")
   end
 
   ##
@@ -67,6 +71,6 @@ class MetricsService
     properties = { error_name: name }.merge(additional_properties)
     ::NewRelic::Agent.record_custom_event('Error', properties)
   rescue StandardError => e
-    Rails.logger.error("Failed reporting error to NewRelic: #{e}")
+    LOGGER.error("Failed reporting error to NewRelic: #{e}")
   end
 end
