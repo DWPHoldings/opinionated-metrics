@@ -24,10 +24,9 @@ class MetricsService
     raise 'A block is required for time_operation calls' unless block_given?
 
     start = Time.current
-    yield
+    result = yield
     duration_start_end(name, start, Time.current, **additional_properties)
-  rescue StandardError => e
-    Rails.logger.error("Failed reporting timing to NewRelic: #{e}")
+    result
   end
 
   ##
