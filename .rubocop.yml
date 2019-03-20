@@ -1,0 +1,9 @@
+AllCops:
+  TargetRubyVersion: 2.5
+  Exclude:
+    - 'db/schema.rb'
+    - 'lib/tasks/*'
+    - 'vendor/**/*'
+
+Metrics/LineLength:
+  Max: 140
