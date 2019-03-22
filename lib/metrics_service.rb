@@ -64,8 +64,9 @@ class MetricsService
   # Tracks an exception for error reporting when errors are suppressable for the purpose of HTTP status codes. Outputs `Error`
   #
   # @param [String] name A name for filtering within WHERE queries
-  def self.exception(name, exception)
-    error(name, type: exception.class.name, message: exception&.message)
+  def self.exception(name, exception, **additional_properties)
+    properties = { type: exception.class.name, message: exception&.message }.merge(additional_properties)
+    error(name, **properties)
   end
 
   ##

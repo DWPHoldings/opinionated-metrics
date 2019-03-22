@@ -1,4 +1,7 @@
-build:
+test:
+	rspec
+
+build: test
 	gem build opinionated-metrics.gemspec
 
 push:
