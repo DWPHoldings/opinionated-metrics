@@ -36,3 +36,7 @@ rescue StandardError => e
 end
 ```
 
+Usage in development
+====================
+
+Pushing events to NewRelic can be tricky because they try to avoid sending useless telemetry to their servers. Try reading through the tips in https://discuss.newrelic.com/t/just-get-nil-when-trying-to-use-ruby-agent-to-record-custom-event-for-new-relic-insights/27442/2 , especially using NEW_RELIC_AGENT_ENABLED=true for your consoles, while testing.

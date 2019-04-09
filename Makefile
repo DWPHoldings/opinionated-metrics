@@ -1,3 +1,6 @@
+default:
+	echo "Available commands: test; build; version=X.X.X push"
+
 test:
 	rspec
 
